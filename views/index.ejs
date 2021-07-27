@@ -1,0 +1,316 @@
+    <%
+    function cockandballs(ip, port, manual) {
+        const promiseCheck = new Promise((resolve, rejectlikehyperz) => {
+            if (manual === "0") {
+                fetch(`http://${ip}:${port}`, {}).then(response => {
+                    if (response.ok) {
+                        console.log('sussy baka')
+                        resolve('<div class="right indicator online">Operational <i class="fas fa-battery-full"></i></div>');
+                    } else {
+                        console.log(`FUCK MEN`)
+                        resolve('<div class="right indicator offline">Offline <i class="fas fa-battery-empty"></i></div>');
+                    }
+                }).catch(e => {
+                    if (e) {
+                        resolve('<div class="right indicator offline">Offline <i class="fas fa-battery-empty"></i></div>');
+                    }
+                });
+            } else if (manual === "1" || "2" || "3") {
+                if (manual === "1") {
+                    resolve('<div class="right indicator online">Operational <i class="fas fa-battery-full"></i></div>');
+                } else if (manual === "2") {
+                    resolve('<div class="right indicator issues">Issues <i class="fas fa-battery-half"></i></div>');
+                } else if (manual === "3") {
+                    resolve('<div class="right indicator offline">Offline <i class="fas fa-battery-empty"></i></div>');
+                }
+            } else {
+                resolve(console.log('You fucking retard read the docs and actually set the status for the servers correctly this time'));
+            }
+        });
+        promiseCheck.then((msg) => {
+            console.log(`[] ${msg}`)
+            return msg;
+        });
+    }
+    %>
+    
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Status -
+            <%=jsonValue.website.name%>
+        </title>
+        <link rel="icon" type="image/png" href="<%=jsonValue.main.logourl%>" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-0c38nfCMzF8w8DBI+9nTWzApOpr1z0WuyswL4y6x/2ZTtmj/Ki5TedKeUcFusC/k" crossorigin="anonymous">
+        <meta name="theme-color" content="<%=jsonValue.website.colorhex%>">
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:creator" content="@jekeltor" />
+        <meta property="og:url" content="<%=jsonValue.main.domain%>" />
+        <meta property="og:title" content="<%-jsonValue.website.name%>" />
+        <meta property="og:description" content="<%=jsonValue.website.description %>" />
+        <meta property="og:image" content="<%=jsonValue.main.logourl%>" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inria+Sans&display=swap" rel="stylesheet">
+        <script>
+            window.onload = function() { 
+                setTimeout(function(){ var loader = document.getElementById('loader');
+                loader.classList.add("none"); }, 2000);
+            }
+      </script>
+        <style>
+            body {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+                margin: 0;
+                background-image: url("<%= jsonValue.main.bgURL %>");
+                font-family: 'Inria Sans', sans-serif;
+            }
+            
+            .loader {
+                height: 100vh;
+                width: 100%;
+                background-color: <%= jsonValue.website.colorhex %>;
+                position: absolute;
+                z-index: 10;
+            }
+            
+            .loader .loading {
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 99;
+            }
+            
+            .loader .loading:after {
+                content: "";
+                width: 8vh;
+                height: 8vh;
+                position: absolute;
+                top: -30px;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                margin: auto;
+                border: 1vh solid #fff;
+                border-top: 1vh dotted #fff;
+                border-bottom: 1vh dotted #fff;
+                border-radius: 50%;
+                animation: loading 2s infinite;
+            }
+            
+            .none {
+                animation: .25s ease-in 0s 1 preloader;
+                animation-fill-mode: forwards;
+            }
+            
+            .body {
+                display: flex;
+                height: 90vh;
+                width: 100%;
+                background-image: url("<%= jsonValue.main.bgURL %>");
+                background-size: cover;
+                background-repeat: no-repeat;
+                position: absolute;
+                z-index: 1;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+            
+            .body .announcementspacer {
+                width: 44vw;
+            }
+            
+            .body .announcement {
+                z-index: 3;
+                width: 44vw;
+                padding-top: 1.5vh;
+                padding-bottom: 1.5vh;
+                font-size: 1.75vh;
+                color: #fff;
+                background-color: <%=jsonValue.website.colorhex %>;
+                border-radius: 1vh;
+                text-align: center;
+            }
+            
+            .body .announcement h1 {
+                font-size: 2.5vh;
+                margin: 0;
+                margin-bottom: 1vh;
+            }
+            
+            .body .announcement p {
+                font-size: 1.75vh;
+                margin: 0;
+            }
+            
+            .body .screen {
+                display: flex;
+                height: 90vh;
+                width: 100%;
+                position: absolute;
+                z-index: 2;
+                background-image: url("<%= jsonValue.main.bgURL %>");
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .body .screen .spacer {
+                display: flex;
+                margin-top: 5vh;
+                min-height: 50vh;
+                min-width: 40vw;
+                padding: 5vh 2%;
+                background-color: rgba(255, 255, 255, .2);
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .body .screen .spacer .center {
+                width: 100%;
+            }
+            
+            .body .screen .spacer .center h1 {
+                font-size: 3vh;
+                color: #fff;
+                margin: 0;
+                margin-bottom: 2vh;
+            }
+            
+            .body .screen .spacer .center .item {
+                display: flex;
+                font-size: 1.75vh;
+                width: 85%;
+                margin-left: 5.5%;
+                color: #fff;
+                border-radius: 5vh;
+                padding: 2vh 2%;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 2vh;
+            }
+            
+            .body .screen .spacer .center .item .left {
+                width: 25%;
+                margin-left: 2.5%;
+                margin-right: 22.5%;
+                text-align: center;
+            }
+            
+            .body .screen .spacer .center .item .right {
+                width: 25%;
+                margin-left: 22.5%;
+                margin-right: 2.5%;
+                text-align: center;
+            }
+            
+            @keyframes preloader {
+                0% {
+                    visibility: visible;
+                    opacity: 1;
+                }
+                99% {
+                    visibility: hidden;
+                    opacity: 0;
+                    height: 100vh;
+                    width: 100%;
+                }
+                100% {
+                    height: 0vh;
+                    width: 0%;
+                    opacity: 0;
+                    display: none;
+                    z-index: -5;
+                }
+            }
+            
+            @keyframes loading {
+                0% {
+                    transform: rotate(0);
+                }
+                50% {
+                    transform: rotate(360deg);
+                }
+            }
+            
+            @media screen and (max-width: 600px),
+            (orientation: portrait) {
+                .body .announcementspacer {
+                    width: 94vw;
+                }
+                .body .announcement {
+                    width: 94vw;
+                }
+                .body .screen .spacer {
+                    min-width: 90vw;
+                }
+                .body .screen .spacer .center .item {
+                    margin-left: 5.5%;
+                }
+            }
+        </style>
+    </head>
+    <section class="loader" id="loader">
+        <div class="loading">
+        </div>
+    </section>
+
+    <body>
+        <section class="body">
+            <div class="screen">
+                <div class="announcementspacer">
+                 <% if(jsonValue.website.announcement === "") { } else { %>
+                        
+                    <div class="announcement">
+                            <h1>Notification</h1>
+                            <p>
+                                <%= jsonValue.website.announcement %>
+                            </p>
+                    </div>
+                
+                <% } %>
+                    <div class="spacer">
+                    <div class="center">
+                        <h1>Server Status</h1>
+                        <% jsonValue.website.servers.forEach(async (element) => { %>
+                            <div class="item">
+                                <div class="left"> <%= element.name %> </div>
+                                <% let thingy = await cockandballs(element.IP, element.port, element.status)
+                                console.log(`{} ${thingy}`)%>
+                            </div>
+                        <% }); %>
+                    </div>
+            </div>
+            </div>
+            </div>
+        </section>
+        <script>
+        		function checkStatus() {
+			var servers = document.getElementsByClassName("item");
+			for (var i = 0; i < servers.length; ++i) {
+				var server = servers[i];
+				if (server.innerHTML.includes("indicator online")) {
+					server.style.backgroundColor = "#1ea100";
+				}
+
+				else if (server.innerHTML.includes("indicator offline")) {
+					server.style.backgroundColor = "#cf0000";
+				}
+
+				else if (server.innerHTML.includes("indicator issues")) {
+					server.style.backgroundColor = "#ff8400";
+				}
+			}
+		}
+
+		checkStatus();
+        
+        </script>
+    </body>
+
+    </html>
+
