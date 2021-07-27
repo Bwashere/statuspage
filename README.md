@@ -17,5 +17,5 @@ A simple status page with fair customization and automatic & manual server statu
 
 - [@Hyperz#0001](https://hyperz.dev/discord) - *Reworked code to EJS.*
 - [@Jordan#2139](https://jordan2139.me/) - *Reworked code to EJS.*
-- [@FAXES#8655](https://faxes.zone/discord) - *Reworked code to EJS.*
+- [@FAXES#8655](https://faxes.zone/discord) - *Early Morning Mental Support (FaxTherapy)*
 - [@Jekeltor#0001](https://jekeltor.com) - *Original programming in PHP.*
