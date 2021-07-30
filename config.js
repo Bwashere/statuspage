@@ -22,16 +22,10 @@ const config = {
                 name: 'Server Two',
                 IP: '127.0.0.1',
                 port: '8080',
-                status: '1' // Read the docs you fuck nut, yes the number mean something. Im not that dumb
-            },
-            server3 = {
-                name: 'Server Three',
-                IP: '222.222.222.222',
-                port: '8080',
-                status: '0' // Read the docs you fuck nut, yes the number mean something. Im not that dumb
+                status: '2' // Read the docs you fuck nut, yes the number mean something. Im not that dumb
             },
             server4 = {
-                name: 'Server Four',
+                name: 'Server Three',
                 IP: '170.39.213.210',
                 port: '3050',
                 status: '0' // Read the docs you fuck nut, yes the number mean something. Im not that dumb

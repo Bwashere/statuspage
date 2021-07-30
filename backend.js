@@ -3,6 +3,10 @@
 // CREATED BY HYPERZ, JORDAN, FAXES, AND JEKELTOR (PHP)
 
 const fetch = require('node-fetch');
+const coolio = [
+    { type: 'online', code: '<div class="right indicator online">Operational <i class="fas fa-battery-full"></i></div>' },
+    { type: 'offline', code: '<div class="right indicator offline">Offline <i class="fas fa-battery-empty"></i></div>' }
+];
 
 function copyText(e) {
     var textToCopy = document.querySelector(e);
@@ -36,44 +40,37 @@ function dropDown() {
     }
 }
 
-// function checkStatus(ip, port, manual) {
-//     const promiseCheck = new Promise((resolve, rejectlikehyperz) => {
-//         if (manual === "0") {
-//             fetch(`http://${ip}:${port}`, {}).then(response => {
-//                 if (response.ok) {
-//                     console.log('sussy baka')
-//                     resolve('<div class="right indicator online">Operational <i class="fas fa-battery-full"></i></div>');
-//                 } else {
-//                     console.log(`FUCK MEN`)
-//                     resolve('<div class="right indicator offline">Offline <i class="fas fa-battery-empty"></i></div>');
-//                 }
-//             }).catch(e => {
-//                 if (e) {
-//                     resolve('<div class="right indicator offline">Offline <i class="fas fa-battery-empty"></i></div>');
-//                 }
-//             });
-//         } else if (manual === "1" || "2" || "3") {
-//             if (manual === "1") {
-//                 resolve('<div class="right indicator online">Operational <i class="fas fa-battery-full"></i></div>');
-//             } else if (manual === "2") {
-//                 resolve('<div class="right indicator issues">Issues <i class="fas fa-battery-half"></i></div>');
-//             } else if (manual === "3") {
-//                 resolve('<div class="right indicator offline">Offline <i class="fas fa-battery-empty"></i></div>');
-//             }
-//         } else {
-//             resolve(console.log('You fucking retard read the docs and actually set the status for the servers correctly this time'));
-//         }
-//     });
-//     promiseCheck.then((msg) => {
-//         console.log(`[] ${msg}`)
-//         return msg;
-//     });
-// }
+function checkStatus(ip, port, manual) {
+        if (manual === "0") {
+            fetch(`http://${ip}:${port}`, {}).then(response => {
+                if (response.ok) {
+                    return '<div class="right indicator offline">Offline <i class="fas fa-battery-empty"></i></div>';
+                } else {
+                    return '<div class="right indicator offline">Offline <i class="fas fa-battery-empty"></i></div>';
+                }
+            }).catch(e => {
+                if (e) {
+                    return '<div class="right indicator offline">Offline <i class="fas fa-battery-empty"></i></div>';
+                }
+            });
+        } else if (manual === "1" || "2" || "3") {
+            if (manual === "1") {
+                return '<div class="right indicator online">Operational <i class="fas fa-battery-full"></i></div>';
+            } else if (manual === "2") {
+                return '<div class="right indicator issues">Issues <i class="fas fa-battery-half"></i></div>';
+            } else if (manual === "3") {
+                return '<div class="right indicator offline">Offline <i class="fas fa-battery-empty"></i></div>';
+            }
+        } else {
+            return console.log('You fucking retard read the docs and actually set the status for the servers correctly this time');
+        }
+}
 
 
 module.exports = {
     copyText: copyText,
-    dropDown: dropDown
+    dropDown: dropDown,
+    checkStatus: checkStatus
 }
 
 // CREATED BY HYPERZ, JORDAN, FAXES, AND JEKELTOR (PHP)
