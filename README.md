@@ -7,7 +7,7 @@ A simple status page with fair customization and automatic & manual server statu
 
 ---
 
-# Preview
+# A Preview
 
 ![](https://cdn.hyperz.dev/bwl7sd5l.png)
 
